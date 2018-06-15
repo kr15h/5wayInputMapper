@@ -3,15 +3,11 @@
 void ofApp::setup(){
 	
 	// Setup serial connection.
-	serial.setup(1, 9600);
+	serial.listDevices();
+	int baudRate = 9600;
+	serial.setup(1, baudRate);
 	serial.flush();
-	
-	// Setup WebSockets
-	ofxLibwebsockets::ServerOptions options = ofxLibwebsockets::defaultServerOptions();
-    options.port = 9092;
-	options.bUseSSL = false;
-    webSocketsSetup = webSocketsServer.setup( options );
-    webSocketsServer.addListener(this);
+
 	
 	// Configure the background to be black and set up mapper.
 	ofBackground(0);
@@ -133,44 +129,4 @@ std::string ofApp::inputToString(int direction, int state){
 	}
 	
 	return dirStr + " " + steStr;
-}
-
-void ofApp::onConnect( ofxLibwebsockets::Event & args ){
-	std::cout << "onConnect" << std::endl;
-}
-
-void ofApp::onOpen( ofxLibwebsockets::Event & args ){
-    std::cout << "onOpen" << std::endl;
-    //messages.push_back(
-    //	"New connection from " + args.conn.getClientIP() +
-    //	", " + args.conn.getClientName() );
-}
-
-void ofApp::onClose( ofxLibwebsockets::Event & args ){
-    std::cout << "onClose" << std::endl;
-    //messages.push_back("Connection closed");
-}
-
-void ofApp::onIdle( ofxLibwebsockets::Event& args ){
-    std::cout << "onIdle" << std::endl;
-}
-
-void ofApp::onMessage( ofxLibwebsockets::Event & args ){
-    std::cout << "onMessage: " << args.message << std::endl;
-	
-    // trace out string messages or JSON messages!
-	/*
-    if ( !args.json.isNull() ){
-        messages.push_back("New message: " + args.json.toStyledString() + " from " + args.conn.getClientName() );
-    } else {
-        messages.push_back("New message: " + args.message + " from " + args.conn.getClientName() );
-    }
-    */
-	
-    // echo server = send message right back!
-    //args.conn.send( args.message );
-}
-
-void ofApp::onBroadcast( ofxLibwebsockets::Event & args ){
-    std::cout << "onBroadcast: " << args.message << std::endl;
 }
