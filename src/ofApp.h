@@ -4,11 +4,11 @@
 #include "ofxPiMapper.h"
 
 enum Direction {
-	LEFT = 10,
-	RIGHT = 9,
-	UP = 2,
-	DOWN = 3,
-	CENTER = 8,
+	LEFT = 8,
+	RIGHT = 10,
+	UP = 6,
+	DOWN = 9,
+	CENTER = 7,
 	SEPARATOR = 32
 };
 

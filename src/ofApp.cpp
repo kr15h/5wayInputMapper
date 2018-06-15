@@ -5,7 +5,7 @@ void ofApp::setup(){
 	// Setup serial connection.
 	serial.listDevices();
 	int baudRate = 9600;
-	serial.setup(1, baudRate);
+	serial.setup(0, baudRate);
 	serial.flush();
 
 	
