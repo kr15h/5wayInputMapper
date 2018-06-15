@@ -8,12 +8,15 @@ void ofApp::setup(){
 	serial.setup(0, baudRate);
 	serial.flush();
 
-	
 	// Configure the background to be black and set up mapper.
 	ofBackground(0);
 	mapper.setup();
 	
 	timer = 0.0f;
+
+#ifdef TARGET_RASPBERRY_PI
+	ofSetFullscreen(true);
+#endif
 }
 
 void ofApp::update(){
